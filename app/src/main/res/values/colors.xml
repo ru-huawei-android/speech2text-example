@@ -10,4 +10,5 @@
     <color name="micEnabledColor">#FFD81B60</color>
     <color name="micDisabledColor">#88D81B60</color>
     <color name="backgroundColor">#FFFFFF</color>
+    <color name="ic_launcher_background">#FFFFFF</color>
 </resources>
