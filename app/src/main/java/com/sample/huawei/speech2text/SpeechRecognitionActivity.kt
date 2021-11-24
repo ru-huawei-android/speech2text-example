@@ -64,11 +64,11 @@ class SpeechRecognitionActivity : AppCompatActivity() {
 
     internal inner class SpeechRecognitionListener : MLAsrListener {
         override fun onStartListening() {
-            Log.i(TAG, "onStartListening")
+            logd("Started Listening")
         }
 
         override fun onStartingOfSpeech() {
-            Log.i(TAG, "onStartOfSpeech")
+            logd("Started Speaking")
         }
 
         // Return the original PCM stream and audio power to the user.
