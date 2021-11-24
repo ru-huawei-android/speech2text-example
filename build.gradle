@@ -16,6 +16,15 @@ buildscript {
     }
 }
 
-task clean(type: Delete) {
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        // Configure the Maven repository address for the HMS Core SDK.
+        maven { url 'https://developer.huawei.com/repo/' }
+    }
+}
+
+    task clean(type: Delete) {
     delete rootProject.buildDir
 }
