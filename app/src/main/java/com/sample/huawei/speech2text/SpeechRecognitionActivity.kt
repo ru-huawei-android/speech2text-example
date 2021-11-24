@@ -23,7 +23,7 @@ class SpeechRecognitionActivity : AppCompatActivity() {
         ActivitySpeechRecognitionBinding.inflate(layoutInflater)
     }
     private val speechRecognizer = MLAsrRecognizer.createAsrRecognizer(this)
-    private var isActive: Boolean = false
+    private var isMicButtonPressed: Boolean = false
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,13 +48,11 @@ class SpeechRecognitionActivity : AppCompatActivity() {
                         mic.alpha = 1f
                         recognizedText.text = ". . ."
                         speechRecognizer.startRecognizing(speechRecognizerIntent)
-                        isActive = true
+                        isMicButtonPressed = true
                         true
                     }
                     MotionEvent.ACTION_UP -> {
-                        mic.alpha = .5f
-                        stateTextView.text = getString(R.string.hint)
-                        isActive = false
+                        isMicButtonPressed = false
                         true
                     }
                     MotionEvent.ACTION_BUTTON_PRESS -> false
@@ -92,8 +90,12 @@ class SpeechRecognitionActivity : AppCompatActivity() {
         override fun onResults(results: Bundle) {
             val text = results.getString(MLAsrRecognizer.RESULTS_RECOGNIZED) ?: ""
             showRecognizedText(text)
-            if(!isActive) {
+            if(!isMicButtonPressed) {
                 speechRecognizer.destroy()
+                with(binding) {
+                    mic.alpha = .5f
+                    stateTextView.text = getString(R.string.hint)
+                }
             }
         }
 
