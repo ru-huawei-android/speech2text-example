@@ -22,6 +22,8 @@ class SpeechRecognitionActivity : AppCompatActivity() {
     private val binding by lazy {
         ActivitySpeechRecognitionBinding.inflate(layoutInflater)
     }
+    private val speechRecognizer = MLAsrRecognizer.createAsrRecognizer(this)
+    private var isActive: Boolean = false
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,7 +36,6 @@ class SpeechRecognitionActivity : AppCompatActivity() {
 
     @SuppressLint("ClickableViewAccessibility")
     private fun setMicButtonTouchListener() {
-        val speechRecognizer = MLAsrRecognizer.createAsrRecognizer(this)
         speechRecognizer.setAsrListener(SpeechRecognitionListener())
 
         val speechRecognizerIntent = Intent(MLAsrConstants.ACTION_HMS_ASR_SPEECH)
@@ -47,12 +48,13 @@ class SpeechRecognitionActivity : AppCompatActivity() {
                         mic.alpha = 1f
                         recognizedText.text = ". . ."
                         speechRecognizer.startRecognizing(speechRecognizerIntent)
+                        isActive = true
                         true
                     }
                     MotionEvent.ACTION_UP -> {
                         mic.alpha = .5f
                         stateTextView.text = getString(R.string.hint)
-                        speechRecognizer.destroy()
+                        isActive = false
                         true
                     }
                     MotionEvent.ACTION_BUTTON_PRESS -> false
@@ -90,6 +92,9 @@ class SpeechRecognitionActivity : AppCompatActivity() {
         override fun onResults(results: Bundle) {
             val text = results.getString(MLAsrRecognizer.RESULTS_RECOGNIZED) ?: ""
             showRecognizedText(text)
+            if(!isActive) {
+                speechRecognizer.destroy()
+            }
         }
 
         // This API is not running in the main thread,
