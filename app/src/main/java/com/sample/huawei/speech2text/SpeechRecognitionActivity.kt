@@ -26,10 +26,10 @@ class SpeechRecognitionActivity : AppCompatActivity() {
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(binding.root)
         requestPermissionsIfNeeded()
         MLApplication.getInstance().apiKey = API_KEY
         setMicButtonTouchListener()
-        setContentView(binding.root)
     }
 
     @SuppressLint("ClickableViewAccessibility")
