@@ -3,11 +3,10 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="oval">
 
-    <solid
-        android:color="#0F000000"/>
     <stroke
         android:width="1dp"
-        android:color="@color/micEnabledColor"/>
+        android:color="@color/micEnabledColor"
+        />
     <size
         android:width="100dp"
         android:height="100dp"/>

@@ -11,12 +11,12 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:alpha="0.5"
-        android:background="@drawable/mic_background"
+        android:background="@drawable/bg_mic_stroke"
         android:src="@drawable/ic_mic_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:tint="@color/micDisabledColor"
+        app:tint="@color/micEnabledColor"
         android:layout_marginBottom="100dp"
         />
 
