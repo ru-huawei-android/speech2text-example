@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Speech Recognition</string>
+    <string name="hint">Long press to record</string>
+</resources>
