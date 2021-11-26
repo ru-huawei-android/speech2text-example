@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">Speech Recognition</string>
-    <string name="hint">Long press to record</string>
+    <string name="hint">Tap to recognise</string>
 </resources>
